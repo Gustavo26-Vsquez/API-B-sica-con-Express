@@ -28,5 +28,4 @@ jobs:
 
       # Paso 4: Disparar el despliegue automático en la nube (Despliegue Continuo - CD)
       - name: Despliegue Continuo a Render
-        run: |
-          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
