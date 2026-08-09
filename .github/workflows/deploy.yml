@@ -1,1 +1,32 @@
+name: Pipeline CI/CD - Despliegue Automático
 
+# Se ejecuta automáticamente al hacer push en la rama principal
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Clonar el código del repositorio
+      - name: Descargar código fuente
+        uses: actions/checkout@v4
+
+      # Paso 2: Configurar el entorno de Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # Paso 3: Validar el código instalando dependencias (Integración Continua - CI)
+      - name: Validación - Instalación de dependencias
+        run: npm ci
+
+      # Paso 4: Disparar el despliegue automático en la nube (Despliegue Continuo - CD)
+      - name: Despliegue Continuo a Render
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
