@@ -26,7 +26,7 @@ app.get('/api/health', (req, res) => {
 // Ruta raíz informativa (opcional, útil para quien abre la API en el navegador)
 app.get('/', (req, res) => {
   res.status(200).json({
-    mensaje: 'Bienvenido a la API REST de ejemplo',
+    mensaje: 'Bienvenido a la API REST de Gustavo INU-26 para KODIGO',
     endpoints_disponibles: [
       'GET    /api/health',
       'GET    /api/estudiantes',
